@@ -3,7 +3,6 @@
  */
 
 import {Component} from '@angular/core';
-// import {MATERIAL_DIRECTIVES} from 'ng2-material';
 
 import {FormDataService} from '../.././services/formdata.service';
 
@@ -24,7 +23,7 @@ export class AddTodoComponent {
     }
 
     private addTodo(): void {
-        this.formDataService.getAddTodoDispatcher().next(
+        this.formDataService.getTodoDispatcher().next(
             [
               ...this.formDataService.getCurrentTodos(),
               {id: this.id,

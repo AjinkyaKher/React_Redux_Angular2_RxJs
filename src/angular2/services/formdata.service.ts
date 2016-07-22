@@ -11,20 +11,20 @@ import {IState} from '.././interfaces/state.interface';
  */
 @Injectable()
 export class FormDataService {
-  private addTodoDispatcher: BehaviorSubject<ITodo[]>;
   private visibilityFilterDispatcher: BehaviorSubject<string>;
+  private todoDispatcher: BehaviorSubject<ITodo[]>;
   private state: Observable<IState>;
   private currentTodos: ITodo[];
 
   constructor() {
-    this.addTodoDispatcher = new BehaviorSubject([]);
     this.visibilityFilterDispatcher = new BehaviorSubject('SHOW_ALL');
+    this.todoDispatcher = new BehaviorSubject([]);
     this.currentTodos = [];
 
     this.state = Observable.combineLatest(
-      this.addTodoDispatcher,
       this.visibilityFilterDispatcher,
-      (todos, visibilityFilter) => {
+      this.todoDispatcher,
+      (visibilityFilter, todos) => {
         return {
           visibilityFilter,
           todos,
@@ -38,8 +38,8 @@ export class FormDataService {
     });
   }
 
-  public getAddTodoDispatcher(): BehaviorSubject<ITodo[]> {
-    return this.addTodoDispatcher;
+  public getTodoDispatcher(): BehaviorSubject<ITodo[]> {
+    return this.todoDispatcher;
   }
 
   public getVisibilityFilterDispatcher(): BehaviorSubject<string> {

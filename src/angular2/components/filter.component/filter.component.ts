@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-// import {MATERIAL_DIRECTIVES} from 'ng2-material';
 
 import {FormDataService} from '../.././services/formdata.service';
 

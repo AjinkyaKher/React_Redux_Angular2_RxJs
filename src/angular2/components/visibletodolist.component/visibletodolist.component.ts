@@ -3,7 +3,6 @@
  */
 
 import {Component} from '@angular/core';
-// import {MATERIAL_DIRECTIVES} from 'ng2-material';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
@@ -53,7 +52,6 @@ export class VisibleTodoListComponent {
   }
 
   private toggleTodo(todoId: number): void {
-      console.log(todoId);
       let currentTodos: ITodo[] = this.formDataService.getCurrentTodos();
       let todoIndex: number = -1;
       currentTodos.every((todo, index) => {
@@ -66,6 +64,6 @@ export class VisibleTodoListComponent {
       if (todoIndex > -1) {
           currentTodos[todoIndex].completed = !currentTodos[todoIndex].completed;
       }
-      this.formDataService.getAddTodoDispatcher().next(currentTodos);
+      this.formDataService.getTodoDispatcher().next(currentTodos);
   }
 }
